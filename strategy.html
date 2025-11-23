@@ -2,14 +2,17 @@
 <head>
 <meta charset='UTF-8'>
 <title>Daily Strategy</title>
+
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap' rel='stylesheet'>
+
 <style>
 body {
   background: #f0f2f5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   padding: 30px;
 }
 .container {
-  max-width: 960px;
+  max-width: 980px;
   margin: auto;
 }
 .card {
@@ -19,22 +22,35 @@ body {
   padding: 24px 28px;
   margin-bottom: 24px;
 }
-h1, h2, h3 {
+h1 {
+  font-size: 26px;
+  color: #111827;
+  font-weight: 700;
   margin-top: 0;
 }
-h1 {
-  font-size: 24px;
-  color: #1f2933;
-}
 h2 {
-  font-size: 20px;
-  color: #1f4f82;
+  font-size: 21px;
+  color: #1d4ed8;
+  font-weight: 600;
+  margin-top: 0;
 }
-pre {
-  white-space: pre-wrap;
-  font-family: Consolas, 'Fira Code', monospace;
-  font-size: 14px;
-  line-height: 1.7;
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+.time-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.time-pill {
+  background: #eef2ff;
+  color: #1e3a8a;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
 }
 .badge {
   display: inline-block;
@@ -42,27 +58,35 @@ pre {
   border-radius: 999px;
   font-size: 12px;
   color: #fff;
-  margin-right: 6px;
+  margin-right: 8px;
 }
-.badge-riskon { background: #2c7bb6; }
-.badge-riskoff { background: #d9534f; }
-.badge-hedge { background: #6c757d; }
-.time-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.badge-riskon {
+  background: #16a34a;
+}
+.badge-riskoff {
+  background: #dc2626;
+}
+.badge-hedge {
+  background: #6b7280;
+}
+pre {
+  white-space: pre-wrap;
+  font-family: Consolas, 'Fira Code', monospace;
   font-size: 14px;
-}
-.time-pill {
-  background: #f3f4f6;
-  border-radius: 999px;
-  padding: 6px 12px;
+  line-height: 1.7;
 }
 .footer {
   font-size: 12px;
   color: #6b7280;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -72,30 +96,32 @@ pre {
   <div class='card'>
     <h1>📊 Daily Strategy — 2025-11-23</h1>
     <div class='time-row'>
-      <div class='time-pill'>🕒 Beijing: 2025-11-23 17:14:23</div>
-      <div class='time-pill'>🕒 New York: 2025-11-23 04:14:23</div>
-      <div class='time-pill'>📈 US Market Closed (Weekend).</div>
+      <div class='time-pill'>Last Updated (Beijing): 2025-11-23 17:54:44</div>
+      <div class='time-pill'>New York Time: 2025-11-23 04:54:44</div>
+      <div class='time-pill'>US Market: US Market Closed (Weekend).</div>
+      <div class='time-pill'>Version: 20251123.13</div>
+      <div class='time-pill'>Last Auto Run: 7h 5m ago</div>
     </div>
     <br/>
     <div>
       <span class='badge badge-riskon'>RISK_ON — SPY ≥ 200-day MA</span>
       <span class='badge badge-hedge'>Hedge: Market normal → hedge usually not needed.</span>
+      <span class='badge badge-riskon'>Score: 68.9 / 100 (Fair)</span>
     </div>
   </div>
 
   <div class='card'>
-    <h2>Strategy Text</h2>
+    <h2>Strategy Summary</h2>
     <pre>🔒 Forced holdings: VT, AOR, PLTR, VYM, SPY
 
-📈 Extra picks (momentum + low vol): WDC, MU, WBD
+📈 Extra picks: WDC, MU, WBD
 
 🧺 Suggested portfolio:
 VT, AOR, PLTR, VYM, SPY, WDC, MU, WBD
 
-🛡 Hedge Signal:
-Market normal → hedge usually not needed.
+🛡 Hedge: Market normal → hedge usually not needed.
 
-⚠ Market Risk:
+⚠ Risk:
 SPY price : 659.03
 SPY MA200 : 612.3
 State     : RISK_ON — SPY ≥ 200-day MA
@@ -104,26 +130,48 @@ State     : RISK_ON — SPY ≥ 200-day MA
 Days since last: 0
 Rebalance NOT allowed — wait 7 more day(s).
 
-🕒 Time Info:
-Beijing time : 2025-11-23 17:14:23
-New York time: 2025-11-23 04:14:23
-US Market    : US Market Closed (Weekend).</pre>
+🕒 Time:
+Beijing : 2025-11-23 17:54:44
+New York: 2025-11-23 04:54:44
+Market  : US Market Closed (Weekend).
+
+⏱ AutoRun:
+Last run: 7h 5m ago</pre>
+    <h2>💼 Suggested Weights (70% core / 30% momentum)</h2>
+    <ul><li><b>VT</b>: 14%</li><li><b>AOR</b>: 14%</li><li><b>PLTR</b>: 14%</li><li><b>VYM</b>: 14%</li><li><b>SPY</b>: 14%</li><li><b>WDC</b>: 10%</li><li><b>MU</b>: 10%</li><li><b>WBD</b>: 10%</li></ul>
   </div>
 
   <div class='card'>
-    <h2>Holdings & Picks Charts (Last 365 days + 7-day trend)</h2>
-    <h3>VT</h3><img src="chart_VT.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>AOR</h3><img src="chart_AOR.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>PLTR</h3><img src="chart_PLTR.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>VYM</h3><img src="chart_VYM.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>SPY</h3><img src="chart_SPY.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>WDC</h3><img src="chart_WDC.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>MU</h3><img src="chart_MU.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
-<h3>WBD</h3><img src="chart_WBD.png" style="max-width:100%;border-radius:8px;margin-bottom:20px;">
+    <h2>Forced Holdings Charts (VT / AOR / PLTR / VYM / SPY)</h2>
+    <h3 style='color:#58a6ff'>VT</h3>
+<img src='chart_VT.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>AOR</h3>
+<img src='chart_AOR.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>PLTR</h3>
+<img src='chart_PLTR.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>VYM</h3>
+<img src='chart_VYM.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>SPY</h3>
+<img src='chart_SPY.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+  </div>
+
+  <div class='card'>
+    <h2>Dynamic Picks Charts (Momentum + Low Volatility)</h2>
+    <h3 style='color:#58a6ff'>WDC</h3>
+<img src='chart_WDC.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>MU</h3>
+<img src='chart_MU.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+<h3 style='color:#58a6ff'>WBD</h3>
+<img src='chart_WBD.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+  </div>
+
+  <div class='card'>
+    <h2>🌍 Global Financial Headlines</h2>
+    <ul><li><b>[Reuters]</b> <a href='#' target='_blank'>Reuters RSS 拉取失败</a></li><li><b>[Financial Times]</b> <a href='https://www.ft.com/content/a32aa172-cfb1-4929-9841-e3aa6ee8c67d' target='_blank'>Lawmakers say US secretary of state rowed back on Ukraine peace plan</a></li><li><b>[Financial Times]</b> <a href='https://www.ft.com/content/ee8acc59-5075-4b93-8b26-31302f0d0d9d' target='_blank'>Kyiv’s allies insist more work is needed on US-Russian peace plan</a></li><li><b>[Forbes]</b> <a href='https://www.forbes.com/sites/hughmcintyre/2024/01/29/madonna-earns-the-biggest-hit-of-her-career-on-one-billboard-chart-this-week/' target='_blank'>Madonna Earns The Biggest Hit Of Her Career On One Billboard Chart This Week</a></li><li><b>[Forbes]</b> <a href='https://www.forbes.com/sites/danidiplacido/2024/01/29/stanley-cup-tiktok-craze-has-hit-a-wall---of-lead/' target='_blank'>TikTok’s Stanley Cup Craze Has Hit A Wall — Of Lead</a></li><li><b>[MarketWatch]</b> <a href='https://www.marketwatch.com/story/we-almost-lost-10-000-my-late-father-in-laws-company-claimed-his-life-insurance-policy-didnt-exist-it-did-85d02a21?mod=mw_rss_topstories' target='_blank'>‘We almost lost $10,000’: My late father-in-law’s company claimed his life-insurance policy didn’t exist. It did.</a></li><li><b>[MarketWatch]</b> <a href='https://www.marketwatch.com/story/my-retirement-is-completely-in-bitcoin-why-dont-more-people-do-what-i-do-34665250?mod=mw_rss_topstories' target='_blank'>‘My retirement is completely in bitcoin’: Why don’t more people do what I do?</a></li><li><b>[Bloomberg]</b> <a href='#' target='_blank'>Bloomberg Headlines 拉取失败</a></li><li><b>[The Economist]</b> <a href='#' target='_blank'>The Economist Headlines 拉取失败</a></li><li><b>[Wall Street Journal]</b> <a href='#' target='_blank'>Wall Street Journal Headlines 拉取失败</a></li></ul>
   </div>
 
   <div class='footer'>
-    Auto-generated by R · Updated at 2025-11-23 17:14:23 (Beijing Time) · Not investment advice.
+    Auto-generated by R · Last Auto Run: 7h 5m ago · Version 20251123.13 · Not investment advice.
   </div>
 
 </div>
