@@ -1,117 +1,229 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>Daily Strategy</title>
+<title>Daily Strategy — Bloomberg Mode</title>
 
-<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap' rel='stylesheet'>
 
 <style>
 body {
-  background: #f0f2f5;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  padding: 30px;
+  background: #000000;
+  color: #f0f0f0;
+  font-family: 'Roboto Mono', monospace;
+  padding: 20px;
 }
 .container {
-  max-width: 980px;
+  max-width: 1100px;
   margin: auto;
 }
 .card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 24px 28px;
-  margin-bottom: 24px;
+  background: #050505;
+  border: 1px solid #333333;
+  padding: 18px 20px;
+  margin-bottom: 14px;
 }
 h1 {
-  font-size: 26px;
-  color: #111827;
-  font-weight: 700;
-  margin-top: 0;
+  font-size: 22px;
+  color: #f8d000;
+  margin: 0;
 }
 h2 {
-  font-size: 21px;
-  color: #1d4ed8;
-  font-weight: 600;
+  font-size: 18px;
+  color: #f8d000;
   margin-top: 0;
+  border-bottom: 1px solid #333333;
+  padding-bottom: 4px;
 }
 h3 {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 15px;
+  color: #f8d000;
+  margin-bottom: 6px;
 }
 .time-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin-top: 8px;
 }
 .time-pill {
-  background: #eef2ff;
-  color: #1e3a8a;
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 500;
+  background: #111111;
+  color: #f8d000;
+  border: 1px solid #333333;
+  padding: 4px 10px;
+  font-size: 11px;
 }
 .badge {
   display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: #fff;
-  margin-right: 8px;
+  padding: 3px 8px;
+  font-size: 11px;
+  margin-right: 6px;
+  margin-top: 6px;
 }
 .badge-riskon {
-  background: #16a34a;
+  background: #004d18;
+  color: #8bff8b;
 }
 .badge-riskoff {
-  background: #dc2626;
+  background: #4d0000;
+  color: #ff8080;
 }
 .badge-hedge {
-  background: #6b7280;
+  background: #222222;
+  color: #f0f0f0;
+}
+.badge-score {
+  background: #3a2b00;
+  color: #f8d000;
 }
 pre {
   white-space: pre-wrap;
-  font-family: Consolas, 'Fira Code', monospace;
-  font-size: 14px;
-  line-height: 1.7;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #f0f0f0;
 }
 .footer {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 11px;
+  color: #888888;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 12px;
+  border-top: 1px solid #333333;
+  padding-top: 6px;
 }
 a {
-  color: #1d4ed8;
+  color: #f8d000;
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
 }
+
+/* Bloomberg style table for weights */
+.bbg-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.bbg-table th, .bbg-table td {
+  border: 1px solid #333333;
+  padding: 4px 6px;
+}
+.bbg-table th {
+  background: #111111;
+  color: #f8d000;
+  text-align: left;
+}
+.bbg-table tr:nth-child(even) {
+  background: #080808;
+}
+
+/* 新闻卡片 Bloomberg 风 */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px;
+}
+.news-card {
+  background: #050505;
+  border: 1px solid #333333;
+  padding: 8px 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.news-card:hover {
+  border-color: #f8d000;
+  box-shadow: 0 0 10px rgba(248, 208, 0, 0.2);
+  transform: translateY(-1px);
+}
+.news-header {
+  font-size: 11px;
+  color: #aaaaaa;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.news-title {
+  font-size: 13px;
+  color: #f0f0f0;
+}
+
+/* Backtest chart wrapper */
+.chart-wrapper {
+  border: 1px solid #333333;
+  padding: 4px;
+  background: #050505;
+}
+
 </style>
 </head>
 <body>
 <div class='container'>
 
+  <!-- 顶部：Bloomberg 风 状态栏 -->
   <div class='card'>
-    <h1>📊 Daily Strategy — 2025-11-23</h1>
+    <h1>STRATEGY TERMINAL — SLou / EQUITY</h1>
     <div class='time-row'>
-      <div class='time-pill'>Last Updated (Beijing): 2025-11-23 17:54:44</div>
-      <div class='time-pill'>New York Time: 2025-11-23 04:54:44</div>
-      <div class='time-pill'>US Market: US Market Closed (Weekend).</div>
-      <div class='time-pill'>Version: 20251123.13</div>
-      <div class='time-pill'>Last Auto Run: 7h 5m ago</div>
+      <div class='time-pill'>Beijing: 2025-11-23 18:18:04</div>
+      <div class='time-pill'>New York: 2025-11-23 05:18:04</div>
+      <div class='time-pill'>US Market: US Market Closed (Weekend)</div>
+      <div class='time-pill'>Version: 20251123.14</div>
+      <div class='time-pill'>Last Auto Run: 7h 23m ago</div>
     </div>
-    <br/>
     <div>
       <span class='badge badge-riskon'>RISK_ON — SPY ≥ 200-day MA</span>
       <span class='badge badge-hedge'>Hedge: Market normal → hedge usually not needed.</span>
-      <span class='badge badge-riskon'>Score: 68.9 / 100 (Fair)</span>
+      <span class='badge badge-score'>Score: 68.9 / 100 (Fair)</span>
     </div>
   </div>
 
+  <!-- 新闻卡片放在最上方 -->
   <div class='card'>
-    <h2>Strategy Summary</h2>
+    <h2>GLOBAL TOP STORIES</h2>
+    <div class='news-grid'><div class='news-card'>
+  <div class='news-header'>Reuters</div>
+  <a href='#' target='_blank' class='news-title'>Reuters Headlines 拉取失败</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Financial Times</div>
+  <a href='https://www.ft.com/content/a32aa172-cfb1-4929-9841-e3aa6ee8c67d' target='_blank' class='news-title'>Lawmakers say US secretary of state rowed back on Ukraine peace plan</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Financial Times</div>
+  <a href='https://www.ft.com/content/ee8acc59-5075-4b93-8b26-31302f0d0d9d' target='_blank' class='news-title'>Kyiv’s allies insist more work is needed on US-Russian peace plan</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Forbes</div>
+  <a href='https://www.forbes.com/sites/hughmcintyre/2024/01/29/madonna-earns-the-biggest-hit-of-her-career-on-one-billboard-chart-this-week/' target='_blank' class='news-title'>Madonna Earns The Biggest Hit Of Her Career On One Billboard Chart This Week</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Forbes</div>
+  <a href='https://www.forbes.com/sites/danidiplacido/2024/01/29/stanley-cup-tiktok-craze-has-hit-a-wall---of-lead/' target='_blank' class='news-title'>TikTok’s Stanley Cup Craze Has Hit A Wall — Of Lead</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>MarketWatch</div>
+  <a href='https://www.marketwatch.com/story/we-almost-lost-10-000-my-late-father-in-laws-company-claimed-his-life-insurance-policy-didnt-exist-it-did-85d02a21?mod=mw_rss_topstories' target='_blank' class='news-title'>‘We almost lost $10,000’: My late father-in-law’s company claimed his life-insurance policy didn’t exist. It did.</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>MarketWatch</div>
+  <a href='https://www.marketwatch.com/story/my-retirement-is-completely-in-bitcoin-why-dont-more-people-do-what-i-do-34665250?mod=mw_rss_topstories' target='_blank' class='news-title'>‘My retirement is completely in bitcoin’: Why don’t more people do what I do?</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Bloomberg</div>
+  <a href='#' target='_blank' class='news-title'>Bloomberg Headlines 拉取失败</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>The Economist</div>
+  <a href='#' target='_blank' class='news-title'>The Economist Headlines 拉取失败</a>
+</div>
+<div class='news-card'>
+  <div class='news-header'>Wall Street Journal</div>
+  <a href='#' target='_blank' class='news-title'>Wall Street Journal Headlines 拉取失败</a>
+</div></div>
+  </div>
+
+  <!-- 策略 + 权重 -->
+  <div class='card'>
+    <h2>STRATEGY SUMMARY</h2>
     <pre>🔒 Forced holdings: VT, AOR, PLTR, VYM, SPY
 
 📈 Extra picks: WDC, MU, WBD
@@ -119,59 +231,56 @@ a:hover {
 🧺 Suggested portfolio:
 VT, AOR, PLTR, VYM, SPY, WDC, MU, WBD
 
-🛡 Hedge: Market normal → hedge usually not needed.
+🛡 Hedge:
+Market normal → hedge usually not needed.
 
 ⚠ Risk:
 SPY price : 659.03
 SPY MA200 : 612.3
 State     : RISK_ON — SPY ≥ 200-day MA
 
-🔄 Rebalance:
-Days since last: 0
-Rebalance NOT allowed — wait 7 more day(s).
-
-🕒 Time:
-Beijing : 2025-11-23 17:54:44
-New York: 2025-11-23 04:54:44
-Market  : US Market Closed (Weekend).
-
-⏱ AutoRun:
-Last run: 7h 5m ago</pre>
-    <h2>💼 Suggested Weights (70% core / 30% momentum)</h2>
-    <ul><li><b>VT</b>: 14%</li><li><b>AOR</b>: 14%</li><li><b>PLTR</b>: 14%</li><li><b>VYM</b>: 14%</li><li><b>SPY</b>: 14%</li><li><b>WDC</b>: 10%</li><li><b>MU</b>: 10%</li><li><b>WBD</b>: 10%</li></ul>
+🔄 Rebalance view:
+Rebalanced 0 day(s) ago — consider waiting before big changes.</pre>
+    <h2>OPTIMIZED PORTFOLIO WEIGHTS</h2>
+    <table class='bbg-table'><thead><tr><th>Ticker</th><th>Weight</th></tr></thead><tbody><tr><td>AOR</td><td style='text-align:right;'>83.65%</td></tr><tr><td>WDC</td><td style='text-align:right;'>6.59%</td></tr><tr><td>WBD</td><td style='text-align:right;'>4.35%</td></tr><tr><td>PLTR</td><td style='text-align:right;'>4.09%</td></tr><tr><td>MU</td><td style='text-align:right;'>1.11%</td></tr><tr><td>VT</td><td style='text-align:right;'>0.07%</td></tr><tr><td>VYM</td><td style='text-align:right;'>0.07%</td></tr><tr><td>SPY</td><td style='text-align:right;'>0.07%</td></tr></tbody></table>
   </div>
 
+  <!-- 回测收益曲线 -->
   <div class='card'>
-    <h2>Forced Holdings Charts (VT / AOR / PLTR / VYM / SPY)</h2>
-    <h3 style='color:#58a6ff'>VT</h3>
-<img src='chart_VT.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>AOR</h3>
-<img src='chart_AOR.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>PLTR</h3>
-<img src='chart_PLTR.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>VYM</h3>
-<img src='chart_VYM.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>SPY</h3>
-<img src='chart_SPY.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+    <h2>BACKTEST — 1Y PORTFOLIO EQUITY</h2>
+    <div class='chart-wrapper'>
+      <img src='backtest_equity.png' style='max-width:100%;'>
+    </div>
   </div>
 
+  <!-- 强制持仓图 -->
   <div class='card'>
-    <h2>Dynamic Picks Charts (Momentum + Low Volatility)</h2>
-    <h3 style='color:#58a6ff'>WDC</h3>
-<img src='chart_WDC.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>MU</h3>
-<img src='chart_MU.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
-<h3 style='color:#58a6ff'>WBD</h3>
-<img src='chart_WBD.png' style='max-width:100%;border-radius:8px;margin-bottom:20px;'>
+    <h2>CORE HOLDINGS (FORCED)</h2>
+    <h3 style='color:#f8d000;font-family:monospace;'>VT</h3>
+<img src='chart_VT.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>AOR</h3>
+<img src='chart_AOR.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>PLTR</h3>
+<img src='chart_PLTR.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>VYM</h3>
+<img src='chart_VYM.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>SPY</h3>
+<img src='chart_SPY.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
   </div>
 
+  <!-- 动量持仓图 -->
   <div class='card'>
-    <h2>🌍 Global Financial Headlines</h2>
-    <ul><li><b>[Reuters]</b> <a href='#' target='_blank'>Reuters RSS 拉取失败</a></li><li><b>[Financial Times]</b> <a href='https://www.ft.com/content/a32aa172-cfb1-4929-9841-e3aa6ee8c67d' target='_blank'>Lawmakers say US secretary of state rowed back on Ukraine peace plan</a></li><li><b>[Financial Times]</b> <a href='https://www.ft.com/content/ee8acc59-5075-4b93-8b26-31302f0d0d9d' target='_blank'>Kyiv’s allies insist more work is needed on US-Russian peace plan</a></li><li><b>[Forbes]</b> <a href='https://www.forbes.com/sites/hughmcintyre/2024/01/29/madonna-earns-the-biggest-hit-of-her-career-on-one-billboard-chart-this-week/' target='_blank'>Madonna Earns The Biggest Hit Of Her Career On One Billboard Chart This Week</a></li><li><b>[Forbes]</b> <a href='https://www.forbes.com/sites/danidiplacido/2024/01/29/stanley-cup-tiktok-craze-has-hit-a-wall---of-lead/' target='_blank'>TikTok’s Stanley Cup Craze Has Hit A Wall — Of Lead</a></li><li><b>[MarketWatch]</b> <a href='https://www.marketwatch.com/story/we-almost-lost-10-000-my-late-father-in-laws-company-claimed-his-life-insurance-policy-didnt-exist-it-did-85d02a21?mod=mw_rss_topstories' target='_blank'>‘We almost lost $10,000’: My late father-in-law’s company claimed his life-insurance policy didn’t exist. It did.</a></li><li><b>[MarketWatch]</b> <a href='https://www.marketwatch.com/story/my-retirement-is-completely-in-bitcoin-why-dont-more-people-do-what-i-do-34665250?mod=mw_rss_topstories' target='_blank'>‘My retirement is completely in bitcoin’: Why don’t more people do what I do?</a></li><li><b>[Bloomberg]</b> <a href='#' target='_blank'>Bloomberg Headlines 拉取失败</a></li><li><b>[The Economist]</b> <a href='#' target='_blank'>The Economist Headlines 拉取失败</a></li><li><b>[Wall Street Journal]</b> <a href='#' target='_blank'>Wall Street Journal Headlines 拉取失败</a></li></ul>
+    <h2>MOMENTUM / LOW-VOL PICKS</h2>
+    <h3 style='color:#f8d000;font-family:monospace;'>WDC</h3>
+<img src='chart_WDC.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>MU</h3>
+<img src='chart_MU.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
+<h3 style='color:#f8d000;font-family:monospace;'>WBD</h3>
+<img src='chart_WBD.png' style='max-width:100%;border:1px solid #444;padding:4px;margin-bottom:16px;'>
   </div>
 
   <div class='footer'>
-    Auto-generated by R · Last Auto Run: 7h 5m ago · Version 20251123.13 · Not investment advice.
+    Auto-generated by R · Bloomberg-Style Strategy Terminal · Not investment advice.
   </div>
 
 </div>
