@@ -1,340 +1,422 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>QIAN Financial Times</title>
+<title>QIAN Financial Times — Strategy Dashboard</title>
 
-<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap' rel='stylesheet'>
 
 <style>
 body {
-  background: #14161c;
-  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  margin: 0;
   padding: 24px;
-  color: #e5e7eb;
+  background: #f3f4f6;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #111827;
 }
-.container {
+
+.page {
   max-width: 1180px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto;
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
-}
-.brand {
-  font-size: 26px;
-  letter-spacing: 0.14em;
+
+.header-title {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 30px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #e5e0cf;
-  font-weight: 700;
-}
-.brand span.highlight {
-  color: #53a7ff;
-}
-.header-right {
-  font-size: 12px;
-  color: #9ca3af;
-}
-.subheader-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.tag-pill {
-  background: #1f2933;
-  border: 1px solid #374151;
-  color: #d1d5db;
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 11px;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 6px;
 }
 
-.fx-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-.fx-pill {
-  background: linear-gradient(135deg, #111827, #020617);
-  border-radius: 999px;
-  border: 1px solid #374151;
-  padding: 4px 10px;
-  font-size: 11px;
-  color: #e5e7eb;
+.header-sub {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 22px;
 }
 
-.grid {
+.layout {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  gap: 16px;
-  margin-top: 14px;
+  grid-template-columns: 2.1fr 1.3fr;
+  grid-gap: 18px;
 }
 
 .card {
-  background: #111827;
-  border-radius: 12px;
-  border: 1px solid #374151;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
   padding: 18px 20px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
 .card-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  color: #93c5fd;
-  margin-bottom: 10px;
+  color: #111827;
 }
 
-.news-section {
-  margin-bottom: 16px;
-}
-.news-scroller {
-  max-height: 360px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-.news-card {
-  background: linear-gradient(135deg, #020617, #111827);
-  border-radius: 12px;
-  border: 1px solid #1f2937;
-  padding: 10px 12px;
-  margin-bottom: 8px;
-}
-.news-source {
-  font-size: 11px;
-  color: #9ca3af;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.news-title a {
-  font-size: 13px;
-  font-weight: 500;
-  color: #e5e7eb;
-  text-decoration: none;
-}
-.news-title a:hover {
-  text-decoration: underline;
-  color: #93c5fd;
-}
-.news-desc {
-  margin-top: 4px;
-  font-size: 11px;
-  color: #9ca3af;
-}
-
-.strategy-text {
-  background: #020617;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-family: Consolas, 'Fira Code', monospace;
+.card-subtitle {
   font-size: 12px;
-  line-height: 1.6;
-  color: #e5e7eb;
-  white-space: pre-wrap;
+  color: #9ca3af;
 }
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 6px 0 4px 0;
+}
+
+.meta-pill {
+  background: #f3f4f6;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #4b5563;
+}
+
 .badge {
   display: inline-block;
   padding: 3px 9px;
   border-radius: 999px;
   font-size: 11px;
-  margin-right: 6px;
   color: #f9fafb;
-}
-.badge-riskon {
-  background: #15803d;
-}
-.badge-riskoff {
-  background: #b91c1c;
-}
-.badge-hedge {
-  background: #4b5563;
-}
-.badge-score {
-  background: #4f46e5;
+  margin-right: 6px;
 }
 
-.weights-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 6px 0 0 0;
-}
-.weights-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 4px 0;
-  border-bottom: 1px dotted #1f2933;
-  font-size: 12px;
-}
-.weights-item:last-child {
-  border-bottom: none;
-}
-.w-symbol {
-  font-weight: 600;
-  color: #e5e7eb;
-}
-.w-pct {
-  color: #93c5fd;
-  margin: 0 12px;
-  min-width: 60px;
-}
-.w-amt {
-  color: #fbbf24;
-  font-size: 11px;
+.badge-riskon { background: #16a34a; }
+.badge-riskoff { background: #dc2626; }
+.badge-hedge { background: #6b7280; }
+.badge-score { background: #2563eb; }
+
+pre {
+  white-space: pre-wrap;
+  font-family: 'JetBrains Mono', Consolas, 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.chart-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
-}
-.chart-grid.two-col {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.chart-card {
-  background: #020617;
-  border-radius: 10px;
-  border: 1px solid #1f2937;
-  padding: 10px;
-}
-.chart-title {
-  font-size: 12px;
+.muted {
   color: #9ca3af;
-  margin-bottom: 4px;
+  font-size: 13px;
 }
+
+.chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 12px 0 4px 0;
+}
+
 .chart-img {
+  width: 100%;
   max-width: 100%;
   border-radius: 8px;
   display: block;
 }
 
-.cn-section-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #facc15;
-  margin-bottom: 10px;
+.weights-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
 }
-.cn-grid {
+
+.weight-pill {
+  background: #111827;
+  color: #f9fafb;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.weight-pill .sym {
+  font-weight: 600;
+}
+
+.weight-pill .pct {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+/* FX */
+.fx-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fx-pill {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.fx-code {
+  font-weight: 600;
+}
+
+.fx-rate {
+  opacity: 0.9;
+}
+
+/* 新闻卡片区（顶部） */
+.news-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
-.cn-card {
-  background: #020617;
-  border: 1px solid #1f2937;
-  border-radius: 10px;
-  padding: 10px 10px 8px 10px;
-}
-.cn-header {
+
+.news-card {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 4px;
+  flex-direction: column;
+  min-height: 90px;
 }
-.cn-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #e5e7eb;
-}
-.cn-code {
+
+.news-source {
   font-size: 11px;
-  color: #9ca3af;
-}
-.cn-body {
-  font-size: 11px;
-  color: #d1d5db;
-  margin-bottom: 4px;
-}
-.cn-body div {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
   margin-bottom: 2px;
 }
 
-.muted {
-  font-size: 11px;
-  color: #6b7280;
-}
-.footer {
-  margin-top: 14px;
-  font-size: 11px;
-  color: #6b7280;
-  text-align: center;
+.news-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+  line-height: 1.4;
 }
 
-.input-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+.news-title:hover {
+  text-decoration: underline;
 }
-.input-row label {
-  font-size: 12px;
-  color: #d1d5db;
-}
-#total-amount {
-  background: #020617;
-  border-radius: 999px;
-  border: 1px solid #374151;
-  padding: 4px 10px;
-  color: #e5e7eb;
-  font-size: 12px;
-  width: 140px;
-}
-.calc-note {
+
+.news-meta {
+  margin-top: 3px;
   font-size: 11px;
   color: #9ca3af;
 }
 
-a {
-  color: #60a5fa;
+.news-summary {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #4b5563;
 }
-a:hover {
-  color: #93c5fd;
+
+/* 中国 A 股 / 港股卡片 */
+.cn-card {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #0b1220 0%, #020617 40%, #111827 100%);
+  color: #e5e7eb;
+}
+
+.cn-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cn-name {
+  font-family: 'Noto Sans SC', 'Microsoft Yahei', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cn-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #1d4ed8;
+}
+
+.cn-weight {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #059669;
+}
+
+.cn-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr;
+  grid-gap: 6px;
+  align-items: center;
+}
+
+.cn-text {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.cn-text b {
+  color: #bfdbfe;
+}
+
+.cn-chart .chart-img {
+  border-radius: 8px;
+}
+
+/* 金额分配表 */
+.alloc-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.alloc-input-row input {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  min-width: 140px;
+}
+
+.alloc-input-row button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 13px;
+  background: #111827;
+  color: #f9fafb;
+  cursor: pointer;
+}
+
+.alloc-input-row button:hover {
+  background: #1f2937;
+}
+
+.alloc-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 3px;
+  margin-top: 5px;
+}
+
+.alloc-table th {
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  color: #6b7280;
+  padding: 4px 6px;
+}
+
+.alloc-table td {
+  font-size: 12px;
+  padding: 6px 6px;
+}
+
+.alloc-row {
+  background: #f9fafb;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.alloc-row td:first-child {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.alloc-row td:last-child {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+.footer {
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
-
 </head>
 <body>
-<div class='container'>
+<div class='page'>
 
-  <div class='header'>
-    <div class='brand'><span class='highlight'>QIAN</span> FINANCIAL TIMES</div>
-    <div class='header-right'>
-      Version 20251123.20 · Last Auto Run: 16h 24m ago
+  <div class='header-title'>QIAN Financial Times</div>
+  <div class='header-sub'>Generated by R · Beijing 2025-11-24 05:56:40 · US Market: US Market Closed (Weekend).</div>
+
+  <!-- 顶部：新闻区 -->
+  <div class='card'>
+    <div class='card-header'>
+      <div class='card-title'>Global Headlines (Last 2 Days)</div>
+      <div class='card-subtitle'>Only successfully fetched headlines are shown</div>
+    </div>
+    <div class='news-grid'>
+      <p class='muted'>最近两天暂无可用头条或网络问题导致抓取失败。</p>
     </div>
   </div>
 
-  <div class='subheader-row'>
-    <div class='tag-pill'>Beijing: 2025-11-24 05:07:55</div>
-    <div class='tag-pill'>New York: 2025-11-23 16:07:55</div>
-    <div class='tag-pill'>US Market Closed (Weekend).</div>
-    <div class='tag-pill'>RISK_ON — SPY ≥ 200-day MA</div>
-    <div class='tag-pill'>Score: 68.9 / 100 (Fair)</div>
-  </div>
-
-  <div class='fx-row'><div class='fx-pill'>1 USD ≈ 7.1061 CNY</div><div class='fx-pill'>1 GBP ≈ 9.3047 CNY</div><div class='fx-pill'>1 EUR ≈ 8.183 CNY</div><div class='fx-pill'>1 JPY ≈ 0.0454 CNY</div><div class='fx-pill'>1 HKD ≈ 0.9131 CNY</div><div class='fx-pill'>1 SGD ≈ 5.4411 CNY</div></div>
-
-  <div class='grid'>
-
-    <!-- 左侧：全球新闻 -->
-    <div class='card news-section'>
-      <div class='card-title'>🌍 Global Headlines (last ~3 days)</div>
-      <div class='news-scroller'>
-        <p class='muted'>No fresh global headlines available.</p>
-      </div>
-    </div>
-
-    <!-- 右侧：美股策略 -->
-    <div class='card'>
-      <div class='card-title'>📈 US Portfolio Strategy</div>
-      <div style='margin-bottom:6px;'>
-        <span class='badge badge-riskon'>RISK_ON — SPY ≥ 200-day MA</span>
-        <span class='badge badge-hedge'>Hedge: Market normal → hedge usually not needed.</span>
-      </div>
-      <div class='strategy-text'>🔒 Forced holdings: VT, AOR, PLTR, VYM, SPY
+  <div class='layout'>
+    <!-- 左侧：美股策略 + 图表 -->
+    <div>
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>US Equity Strategy</div>
+          <div class='card-subtitle'>Medium-term, dynamic momentum with core holdings</div>
+        </div>
+        <div class='meta-row'>
+          <div class='meta-pill'>New York: 2025-11-23 16:56:40</div>
+          <div class='meta-pill'>Beijing: 2025-11-24 05:56:40</div>
+          <div class='meta-pill'>Last Auto Run: 7h 2m ago</div>
+          <div class='meta-pill'>Version: 20251123.21</div>
+        </div>
+        <div style='margin-top:4px;'>
+          <span class='badge badge-riskon'>RISK_ON — SPY ≥ 200-day MA</span>
+          <span class='badge badge-hedge'>Hedge: Market normal → hedge usually not needed.</span>
+        </div>
+        <pre style='margin-top:10px;'>🔒 Forced holdings: VT, AOR, PLTR, VYM, SPY
 
 📈 Extra picks (momentum + low vol): WDC, MU, WBD
 
@@ -350,241 +432,445 @@ SPY MA200 : 612.3
 State     : RISK_ON — SPY ≥ 200-day MA
 
 🔄 Rebalance (medium-term):
-Medium-term strategy — last rebalance 0 day(s) ago, no need to rebalance unless there is a big regime shift.
+Medium-term strategy — last rebalance 0 day(s) ago, consider rebalance if &gt;= 3 days or if market regime shifts.
 
 ⏱ AutoRun:
-Last run: 16h 24m ago</div>
-      <div style='margin-top:10px;'>
-        <div style='font-size:13px;font-weight:600;color:#bfdbfe;margin-bottom:4px;'>💼 Suggested Weights (optimized)</div>
-        <div class='input-row'>
-          <label for='total-amount'>Total capital (USD):</label>
-          <input id='total-amount' type='number' min='0' placeholder='e.g. 10000'>
+Last run: 7h 2m ago</pre>
+      </div>
+
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>Suggested Weights</div>
+          <div class='card-subtitle'>Optimized 70% core / 30% momentum (risk parity)</div>
         </div>
-        <div class='calc-note'>Enter your total capital to see recommended dollar allocation per stock.</div>
-        <ul class='weights-list'><li class='weights-item'><span class='w-symbol'>VT</span><span class='w-pct'>11.24%</span><span class='w-amt' data-symbol='VT' data-weight='11.24'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>AOR</span><span class='w-pct'>11.24%</span><span class='w-amt' data-symbol='AOR' data-weight='11.24'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>PLTR</span><span class='w-pct'>11.24%</span><span class='w-amt' data-symbol='PLTR' data-weight='11.24'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>VYM</span><span class='w-pct'>11.24%</span><span class='w-amt' data-symbol='VYM' data-weight='11.24'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>SPY</span><span class='w-pct'>11.24%</span><span class='w-amt' data-symbol='SPY' data-weight='11.24'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>WDC</span><span class='w-pct'>14.61%</span><span class='w-amt' data-symbol='WDC' data-weight='14.61'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>MU</span><span class='w-pct'>14.61%</span><span class='w-amt' data-symbol='MU' data-weight='14.61'>Amount: $0</span></li><li class='weights-item'><span class='w-symbol'>WBD</span><span class='w-pct'>14.61%</span><span class='w-amt' data-symbol='WBD' data-weight='14.61'>Amount: $0</span></li></ul>
+        <div class='weights-row'><div class='weight-pill'><span class='sym'>VT</span><span class='pct'>12.16%</span></div><div class='weight-pill'><span class='sym'>AOR</span><span class='pct'>35.37%</span></div><div class='weight-pill'><span class='sym'>PLTR</span><span class='pct'>2.71%</span></div><div class='weight-pill'><span class='sym'>VYM</span><span class='pct'>17.15%</span></div><div class='weight-pill'><span class='sym'>SPY</span><span class='pct'>2.6%</span></div><div class='weight-pill'><span class='sym'>WDC</span><span class='pct'>3.02%</span></div><div class='weight-pill'><span class='sym'>MU</span><span class='pct'>2.33%</span></div><div class='weight-pill'><span class='sym'>WBD</span><span class='pct'>24.65%</span></div></div>
+        <div class='alloc-input-row'>
+          <span style='font-size:12px;color:#4b5563;'>Enter total capital (USD):</span>
+          <input id='totalCapitalInput' type='number' min='0' placeholder='e.g. 50000'>
+          <button id='calcBtn'>Calculate allocation</button>
+        </div>
+        <div id='allocationResult' style='margin-top:4px;font-size:12px;color:#374151;'></div>
+      </div>
+
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>US Portfolio Backtest</div>
+          <div class='card-subtitle'>1-year equity curve with current weights</div>
+        </div>
+        <img src='chart_backtest.png' class='chart-img'>
+      </div>
+
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>Forced Holdings Charts</div>
+          <div class='card-subtitle'>VT / AOR / PLTR / VYM / SPY</div>
+        </div>
+        <h3 class='chart-title'>VT</h3>
+<img src='chart_VT.png' class='chart-img'>
+<h3 class='chart-title'>AOR</h3>
+<img src='chart_AOR.png' class='chart-img'>
+<h3 class='chart-title'>PLTR</h3>
+<img src='chart_PLTR.png' class='chart-img'>
+<h3 class='chart-title'>VYM</h3>
+<img src='chart_VYM.png' class='chart-img'>
+<h3 class='chart-title'>SPY</h3>
+<img src='chart_SPY.png' class='chart-img'>
+      </div>
+
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>Dynamic Picks Charts</div>
+          <div class='card-subtitle'>Momentum + low volatility</div>
+        </div>
+        <h3 class='chart-title'>WDC</h3>
+<img src='chart_WDC.png' class='chart-img'>
+<h3 class='chart-title'>MU</h3>
+<img src='chart_MU.png' class='chart-img'>
+<h3 class='chart-title'>WBD</h3>
+<img src='chart_WBD.png' class='chart-img'>
       </div>
     </div>
 
-  </div> <!-- grid -->
-
-  <!-- 美股图表 -->
-  <div class='card' style='margin-top:18px;'>
-    <div class='card-title'>US Core Holdings — Trend & Forecast</div>
-    <div class='chart-grid two-col'>
-      <div class='chart-card'>
-  <div class='chart-title'>VT</div>
-  <img src='chart_VT.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>AOR</div>
-  <img src='chart_AOR.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>PLTR</div>
-  <img src='chart_PLTR.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>VYM</div>
-  <img src='chart_VYM.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>SPY</div>
-  <img src='chart_SPY.png' class='chart-img'>
-</div>
+    <!-- 右侧：中国区 + 汇率 + 其他 -->
+    <div>
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>A股 / 港股 动态精选</div>
+          <div class='card-subtitle'>模型动态筛选 · 技术分析 · 仓位建议（中文）</div>
+        </div>
+          <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>中国银行</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：3.9%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>温和多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_601988.SS.png' class='chart-img'>
+      </div>
     </div>
   </div>
-
-  <div class='card' style='margin-top:12px;'>
-    <div class='card-title'>US Dynamic Picks — Momentum & Low Volatility</div>
-    <div class='chart-grid two-col'>
-      <div class='chart-card'>
-  <div class='chart-title'>WDC</div>
-  <img src='chart_WDC.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>MU</div>
-  <img src='chart_MU.png' class='chart-img'>
-</div>
-<div class='chart-card'>
-  <div class='chart-title'>WBD</div>
-  <img src='chart_WBD.png' class='chart-img'>
-</div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>宁德时代</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：0.1%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_300750.SZ.png' class='chart-img'>
+      </div>
     </div>
   </div>
-
-  <!-- 中国 & 港股专区 -->
-  <div class='card' style='margin-top:18px;'>
-    <div class='cn-section-title'>🇨🇳 中国 A 股中线策略（中文提示）</div>
-    <p class='muted'>说明：以下为中线参考仓位建议，偏向 1–3 个月持有周期，仅供研究与学习，不构成投资建议。</p>
-    <div class='cn-grid'>
-      <div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>贵州茅台</div>
-    <div class='cn-code'>600519.SS</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：横盘整理</div>
-    <div class='cn-hold'>建议持有时长：约 45 天</div>
-    <div class='cn-weight'>中线仓位建议：约 1%</div>
-  </div>
-  <img src='chart_CN_600519.SS.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>中国平安</div>
-    <div class='cn-code'>601318.SS</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_601318.SS.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>五粮液</div>
-    <div class='cn-code'>000858.SZ</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：横盘整理</div>
-    <div class='cn-hold'>建议持有时长：约 45 天</div>
-    <div class='cn-weight'>中线仓位建议：约 1%</div>
-  </div>
-  <img src='chart_CN_000858.SZ.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>宁德时代</div>
-    <div class='cn-code'>300750.SZ</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_300750.SZ.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>兴业银行</div>
-    <div class='cn-code'>601166.SS</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：横盘整理</div>
-    <div class='cn-hold'>建议持有时长：约 45 天</div>
-    <div class='cn-weight'>中线仓位建议：约 1%</div>
-  </div>
-  <img src='chart_CN_601166.SS.png' class='chart-img'>
-</div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>伊利股份</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：1.3%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>温和多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_600887.SS.png' class='chart-img'>
+      </div>
     </div>
   </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>中国平安（A股）</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：0.6%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_601318.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>招商银行</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：1.2%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>弱势整理</div>
+        <div><b>持有建议：</b>建议 1–3 个月波段持有，控制仓位。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_600036.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>兴业银行</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：1.8%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>弱势整理</div>
+        <div><b>持有建议：</b>建议 1–3 个月波段持有，控制仓位。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_601166.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>五粮液</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：0.6%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_000858.SZ.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>中信证券</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：1.6%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_600030.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>三安光电</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：1.6%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_600703.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>贵州茅台</span>
+      <span class='cn-tag'>A股</span>
+      <span class='cn-weight'>建议仓位：0.1%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_600519.SS.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>阿里巴巴</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.2%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_9988.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>工商银行（港股）</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：3.4%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>温和多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_1398.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>建设银行（港股）</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：3.2%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>温和多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_0939.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>佐丹奴国际</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：76.1%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>弱势整理</div>
+        <div><b>持有建议：</b>建议 1–3 个月波段持有，控制仓位。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_0709.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>盈富基金</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：3%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>温和多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_2823.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>中国平安（港股）</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.5%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_2318.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>友邦保险</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.2%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_1299.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>香港交易所</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.1%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_0388.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>美团</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.4%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>明显回落</div>
+        <div><b>持有建议：</b>短期波动较大，谨慎参与或观望为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_3690.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+  <div class='cn-card'>
+    <div class='cn-header'>
+      <span class='cn-name'>腾讯控股</span>
+      <span class='cn-tag'>港股</span>
+      <span class='cn-weight'>建议仓位：0.1%</span>
+    </div>
+    <div class='cn-body'>
+      <div class='cn-text'>
+        <div><b>趋势判断：</b>强势多头</div>
+        <div><b>持有建议：</b>建议持有 3–6 个月，中线布局为主。</div>
+      </div>
+      <div class='cn-chart'>
+        <img src='chart_CN_0700.HK.png' class='chart-img'>
+      </div>
+    </div>
+  </div>
+      </div>
 
-  <div class='card' style='margin-top:12px;'>
-    <div class='cn-section-title'>🇭🇰 港股精选中线策略</div>
-    <p class='muted'>说明：港股波动较大，仓位建议通常略低于同类 A 股，仅供参考。</p>
-    <div class='cn-grid'>
-      <div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>腾讯控股</div>
-    <div class='cn-code'>0700.HK</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_0700.HK.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>建设银行</div>
-    <div class='cn-code'>0939.HK</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_0939.HK.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>友邦保险</div>
-    <div class='cn-code'>1299.HK</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_1299.HK.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>中国平安(港)</div>
-    <div class='cn-code'>2318.HK</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_2318.HK.png' class='chart-img'>
-</div>
-<div class='cn-card'>
-  <div class='cn-header'>
-    <div class='cn-name'>阿里巴巴</div>
-    <div class='cn-code'>9988.HK</div>
-  </div>
-  <div class='cn-body'>
-    <div class='cn-trend'>趋势判断：温和上行趋势</div>
-    <div class='cn-hold'>建议持有时长：约 90 天</div>
-    <div class='cn-weight'>中线仓位建议：约 8%</div>
-  </div>
-  <img src='chart_CN_9988.HK.png' class='chart-img'>
-</div>
+      <div class='card'>
+        <div class='card-header'>
+          <div class='card-title'>FX — 1 Unit in CNY</div>
+          <div class='card-subtitle'>USD / GBP / EUR / JPY / HKD / SGD → CNY</div>
+        </div>
+        <div class='fx-row'><div class='fx-pill'><span class='fx-code'>USD</span><span class='fx-rate'>7.1061 CNY</span></div><div class='fx-pill'><span class='fx-code'>GBP</span><span class='fx-rate'>9.3034 CNY</span></div><div class='fx-pill'><span class='fx-code'>EUR</span><span class='fx-rate'>8.1856 CNY</span></div><div class='fx-pill'><span class='fx-code'>JPY</span><span class='fx-rate'>0.0453 CNY</span></div><div class='fx-pill'><span class='fx-code'>HKD</span><span class='fx-rate'>0.9127 CNY</span></div><div class='fx-pill'><span class='fx-code'>SGD</span><span class='fx-rate'>5.4383 CNY</span></div></div>
+      </div>
     </div>
   </div>
 
   <div class='footer'>
-    Auto-generated by R · Data from Yahoo Finance & public RSS feeds · Not investment advice.
+    QIAN Financial Times · Auto-generated by R · Not investment advice.
   </div>
-
 </div>
 
 <script>
-  // JS: 根据输入总金额计算每个股票的资金分配
-  const weightsData = [{symbol:'VT', weight:11.24},{symbol:'AOR', weight:11.24},{symbol:'PLTR', weight:11.24},{symbol:'VYM', weight:11.24},{symbol:'SPY', weight:11.24},{symbol:'WDC', weight:14.61},{symbol:'MU', weight:14.61},{symbol:'WBD', weight:14.61}];
+// 动态金额分配（前端 JS）
+const weightsData = [{"symbol":"VT","weight":12.16},{"symbol":"AOR","weight":35.37},{"symbol":"PLTR","weight":2.71},{"symbol":"VYM","weight":17.15},{"symbol":"SPY","weight":2.6},{"symbol":"WDC","weight":3.02},{"symbol":"MU","weight":2.33},{"symbol":"WBD","weight":24.65}];
 
-  function formatDollar(x) {
-    if (!isFinite(x)) return '$0';
-    if (x >= 1000) return '$' + x.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return '$' + x.toFixed(2);
+function formatMoneyUSD(x) {
+  return x.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+}
+
+document.getElementById('calcBtn').addEventListener('click', function() {
+  const valRaw = document.getElementById('totalCapitalInput').value;
+  const total  = parseFloat(valRaw);
+  if (isNaN(total) || total <= 0) {
+    alert('Please enter a positive total capital in USD.');
+    return;
   }
-
-  function recalcAmounts() {
-    const input = document.getElementById('total-amount');
-    if (!input) return;
-    const total = parseFloat(input.value);
-    const spans = document.querySelectorAll('.w-amt');
-    if (isNaN(total) || total <= 0) {
-      spans.forEach(sp => sp.textContent = 'Amount: $0');
-      return;
-    }
-    spans.forEach(sp => {
-      const w = parseFloat(sp.getAttribute('data-weight'));
-      const amt = total * (w / 100.0);
-      sp.textContent = 'Amount: ' + formatDollar(amt);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const input = document.getElementById('total-amount');
-    if (input) {
-      input.addEventListener('input', recalcAmounts);
-    }
+  let rows = '';
+  weightsData.forEach(function(w) {
+    const amt = total * (w.weight / 100.0);
+    rows += `
+      <tr class='alloc-row'>
+        <td>${w.symbol}</td>
+        <td>${w.weight.toFixed(2)}%</td>
+        <td>${formatMoneyUSD(amt)}</td>
+      </tr>
+    `;
   });
+  const html = `
+    <table class='alloc-table'>
+      <thead>
+        <tr><th>Symbol</th><th>Weight</th><th>Amount (USD)</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+  document.getElementById('allocationResult').innerHTML = html;
+});
 </script>
 
 </body>
